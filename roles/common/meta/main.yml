@@ -31,3 +31,6 @@ dependencies:
     when: logging.enabled|default(True)|bool
     service: common
     logdata: "{{ common.logs }}"
+  - role: inspec
+    tags: ['inspec']
+    when: inspec.enabled|default(True)|bool

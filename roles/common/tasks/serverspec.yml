@@ -2,9 +2,15 @@
 - name: ensure serverspec directory exists
   file: dest=/etc/serverspec/spec/localhost state=directory
         owner=root mode=0755 recurse=true
-        
+
 - name: operating system serverspec
   template: src={{ item }}
             dest=/etc/serverspec/spec/localhost
             mode=0755
   with_fileglob: ../templates/etc/serverspec/*
+
+- name: inspec checks for common role
+  template: src={{ item }}
+            dest=/etc/inspec/controls/
+            mode=0755
+  with_fileglob: ../templates/inspec/*
