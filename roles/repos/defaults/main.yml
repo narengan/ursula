@@ -56,3 +56,5 @@ yum_repos:
     repo: http://sensu.global.ssl.fastly.net/yum/$basearch/
     description: sensu monitoring repo
     gpgcheck: no
+  inspec:
+    package: https://packages.chef.io/files/stable/inspec/1.7.1/el/7/inspec-1.7.1-1.el7.x86_64.rpm

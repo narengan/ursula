@@ -31,3 +31,14 @@ dependencies:
     when: logging.enabled|default(True)|bool
     service: common
     logdata: "{{ common.logs }}"
+  - role: inspec
+    repo: inspec
+    tags: ['serverspec', 'inspec']
+    when:
+      - serverspec.enabled|default("True")|bool
+      - os == 'rhel'
+  - role: inspec
+    tags: ['serverspec', 'inspec']
+    when:
+      - serverspec.enabled|default("True")|bool
+      - os == 'ubuntu'

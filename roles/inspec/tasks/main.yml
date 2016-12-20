@@ -1,0 +1,31 @@
+---
+- name: install inspec
+  apt: pkg=inspec
+  when: os == "ubuntu"
+
+- name: ensure inspec directory exists
+  file:
+    dest: /etc/inspec
+    state: directory
+    owner: root
+    mode: 0755
+
+- name: ensure inspec directory exists
+  file:
+    dest: /etc/inspec/controls
+    state: directory
+    owner: root
+    mode: 0755
+
+- name: ensure inspec directory exists
+  file:
+    dest: /etc/inspec/libraries
+    state: directory
+    owner: root
+    mode: 0755
+
+- name: inspec config file
+  template:
+    src: etc/inspec/inspec.yml
+    dest: /etc/inspec/inspec.yml
+    mode: 0644
