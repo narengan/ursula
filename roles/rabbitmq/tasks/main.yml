@@ -45,7 +45,7 @@
   file:
     dest: /etc/systemd/system/rabbitmq-server.service.d
     state: directory
-  when: ursula_os == 'rhel' 
+  when: ursula_os == 'rhel'
 
 - name: set systemd overrides
   copy:
@@ -58,7 +58,7 @@
 - name: restart systemd
   command: systemctl daemon-reload
   when: override.changed and ursula_os == 'rhel'
-  notify: 
+  notify:
     - restart rabbitmq
 
 - name: add rabbitmq environment configuration
@@ -132,3 +132,13 @@
   tags:
     - serverspec
   when: serverspec.enabled|default('False')|bool
+
+- name: inspec checks for rabbitmq
+  template:
+    src: inspec/rabbitmq.rb
+    dest: /etc/inspec/host-controls/controls/rabbitmq.rb
+    owner: root
+    mode: 0644
+  when:
+    - inspec.enabled|default('False')|bool
+    - inspec.controls.rabbitmq.enabled|default('False')|bool

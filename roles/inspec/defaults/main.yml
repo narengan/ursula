@@ -23,6 +23,8 @@ inspec:
         RHEL_07_030710_audit_key_name: audit_account_changes-V-38531
         client_alive_interval: '900'
         RHEL_07_030523_audit_key_name: actions-V-38578
+    rabbitmq:
+      enabled: false
     horizon:
       enabled: true
       profile_location: openstack_security
